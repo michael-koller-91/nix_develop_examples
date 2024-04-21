@@ -1,5 +1,5 @@
 {
-  description = "My-project build environment";
+  description = "Example 001";
   nixConfig.bash-prompt = "[nix develop]:/\\W$ ";
   inputs = { nixpkgs.url = "github:nixos/nixpkgs/23.11"; };
 
@@ -12,10 +12,8 @@
       '';
     in {
       devShells.x86_64-linux.default = pkgs.mkShell {
-        name = "My-project build environment";
+        name = "Example 001 build environment";
         buildInputs = [
-          pkgs.python310
-          pkgs.python310Packages.ipython
           fooScript
         ];
         shellHook = ''
