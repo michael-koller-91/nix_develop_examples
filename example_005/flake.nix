@@ -1,11 +1,9 @@
 {
-  description = "test_005";
+  description = "Example 005";
 
   nixConfig.bash-prompt = "[nix develop]:/\\W$ ";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/23.11";
-};
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs/23.11"; };
 
   outputs = { self, nixpkgs }:
     let
@@ -25,12 +23,15 @@
         ];
 
         shellHook = ''
+            # create a virtual environment if it does not exist yet
             VENV=.venv
             if test ! -d $VENV; then
                 virtualenv $VENV
             fi
+            # activate it
             source ./$VENV/bin/activate
 
+            # will not install anything if all packages are already installed
             pip install -r requirements.txt
 
             # this is something numpy needs
