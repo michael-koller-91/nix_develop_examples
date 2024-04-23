@@ -1,26 +1,28 @@
 {
-  description = "Package the hello repeater.";
+  description = "Example 002";
 
-  outputs = { self, nixpkgs }: {
-    packages.x86_64-linux.hello-repeater =
-      let pkgs = import nixpkgs {
-            system = "x86_64-linux";
-          };
-      in pkgs.stdenv.mkDerivation {
-        pname = "hello-repeater";
-        version = "1.0.0";
-        src = pkgs.fetchgit {
-          url = "https://github.com/breakds/flake-example-hello-repeater.git";
-          rev = "c++-code-alone";
-          sha256 = "sha256-/3tT3jBmWLaENcBRQhi2o3DHbBp2yiYsq2HMD/OYXNU=";
-        };
+  nixConfig.bash-prompt = "[nix develop]:/\\W$ ";
 
-        nativeBuildInputs = with pkgs; [
-          cmake
-        ];
-      };
-
-    # Specify the default package
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.hello-repeater; # <- add this
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/23.11";
+    hello-repeater.url = "path:./package";
   };
+
+  outputs = { self, nixpkgs, hello-repeater }:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux.pkgs;
+    in {
+      devShells.x86_64-linux.default = pkgs.mkShell {
+        name = "Example 002 build environment";
+
+        buildInputs = [
+          hello-repeater.defaultPackage.x86_64-linux
+        ];
+
+        shellHook = ''
+          echo "Welcome in $name"
+        '';
+      };
+    };
 }
+
