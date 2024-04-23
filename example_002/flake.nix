@@ -13,6 +13,7 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux.pkgs;
     in {
       devShells.x86_64-linux.default = pkgs.mkShell {
+
         name = "Example 002 build environment";
 
         buildInputs = [

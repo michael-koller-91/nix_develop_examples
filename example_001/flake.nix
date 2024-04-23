@@ -15,6 +15,7 @@
       '';
     in {
       devShells.x86_64-linux.default = pkgs.mkShell {
+
         name = "Example 001 build environment";
 
         buildInputs = [

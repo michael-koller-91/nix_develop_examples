@@ -26,7 +26,7 @@ This builds what is specified in the flake and enters a shell in which the build
 * Use a `flake.nix` in a subfolder of a remote repository as input of the main `flake.nix`.
 * The remote `flake.nix` makes `nvc` available in the `nix develop` environment. For example: `nvc --version`.
 
-## example_005
+## example_004
 
 * Create a Python virtual environment and install the packages listed in `requirements.txt`.
 * In particular, make `numpy` work by exporting a variable it needs.
