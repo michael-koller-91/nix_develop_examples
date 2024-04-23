@@ -19,7 +19,7 @@ This builds what is specified in the flake and enters a shell in which the build
 
 * Use a local `flake.nix` (in a subfolder) as input of the main `flake.nix`.
 * The local `flake.nix` leads to the compilation of `hello-repeater` which then is available in the `nix develop` environment. It can be executed with `hello-repeater 1`.
-* `hello-repeater` is from (this Github repository)[https://github.com/breakds/flake-example-hello-repeater].
+* `hello-repeater` is from [this Github repository](https://github.com/breakds/flake-example-hello-repeater).
 
 ## example_003
 
