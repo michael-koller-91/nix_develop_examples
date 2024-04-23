@@ -1,5 +1,5 @@
 {
-  description = "Example 005";
+  description = "Example 004";
 
   nixConfig.bash-prompt = "[nix develop]:/\\W$ ";
 
@@ -11,7 +11,7 @@
     in {
         devShells.x86_64-linux.default = pkgs.mkShell {
 
-        name = "shell test_005";
+        name = "Example 004 build environment";
 
         buildInputs = [
             pkgs.python311
@@ -23,6 +23,8 @@
         ];
 
         shellHook = ''
+            echo "Welcome in $name"
+
             # create a virtual environment if it does not exist yet
             VENV=.venv
             if test ! -d $VENV; then
