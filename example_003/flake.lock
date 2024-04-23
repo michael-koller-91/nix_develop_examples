@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1701282334,
+        "narHash": "sha256-MxCVrXY6v4QmfTwIysjjaX0XUhqBbxTWWB4HXtDYsdk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "057f9aecfb71c4437d2b27d3323df7f93c010b7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1713805509,
+        "narHash": "sha256-YgSEan4CcrjivCNO5ZNzhg7/8ViLkZ4CB/GrGBVSudo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1e1dc66fe68972a76679644a5577828b6a7e8be4",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nvc": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "dir": "packages/nvc",
+        "lastModified": 1713898714,
+        "narHash": "sha256-+IL2hRlhs+8dxn7y9znp45vmalFS/9BUE21FfYGPBI8=",
+        "owner": "michael-koller-91",
+        "repo": ".dotfiles",
+        "rev": "452b335b6c4383c3f76b994e0e7e103ded0f9723",
+        "type": "github"
+      },
+      "original": {
+        "dir": "packages/nvc",
+        "owner": "michael-koller-91",
+        "ref": "main",
+        "repo": ".dotfiles",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "nvc": "nvc"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

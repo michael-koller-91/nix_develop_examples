@@ -1,58 +1,31 @@
 {
-  description = "Package nvc.";
+  description = "test_004";
 
-  outputs = { self, nixpkgs }: {
-    packages.x86_64-linux.nvc =
-      let pkgs = import nixpkgs {
-            system = "x86_64-linux";
-          };
-      in pkgs.stdenv.mkDerivation {
-        pname = "nvc";
+  nixConfig.bash-prompt = "[nix develop]:/\\W$ ";
 
-        version = "1.11.3";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/23.11";
+    nvc.url = "github:michael-koller-91/.dotfiles/main?dir=packages/nvc";
+};
 
-        src = pkgs.fetchFromGitHub {
-	  owner = "nickg";
-	  repo = "nvc";
-	  rev = "r1.11.3";
- 	  hash = "sha256-Z4YxXPf8uKlASSK9v6fbtHtkUibc9EeA4i+3kD/vBmY=";
-        };
+  outputs = { self, nixpkgs, nvc }:
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux.pkgs;
+    in {
+      devShells.x86_64-linux.default = pkgs.mkShell {
 
-	preConfigure = ''
-	  mkdir build
-	  cd build
-	'';
+        name = "shell test_004";
 
-	configureScript = "../configure";
-
-	configureFlags = [
-	  "--enable-vhpi"
-	  "--disable-lto"
-	];
-
-        #configurePhase = ''
-	#  mkdir build
- 	#  cd build
-	#  ../configure --enable-vhpi --disable-lto --prefix="$out"
-	#'';
-
-        nativeBuildInputs = with pkgs; [
-	  autoreconfHook
-	  check
-	  elfutils
-	  flex
-	  libffi
-	  pkg-config
-	  llvm
-	  which
-	  zlib
-	  zstd
+        buildInputs = [
+            nvc.defaultPackage.x86_64-linux
         ];
 
-	doCheck = true;
-      };
+        shellHook = ''
+          echo "Welcome in $name"
+          export FOO="BAR";
+        '';
 
-  defaultPackage.x86_64-linux = self.packages.x86_64-linux.nvc;
-  };
+      };
+    };
 }
 
